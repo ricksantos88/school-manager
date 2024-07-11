@@ -3,7 +3,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:13
-    container_name: asom-postgres-local
+    container_name: school-manager-postgres-local
     environment:
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_USER: "postgres"
