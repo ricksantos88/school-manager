@@ -1,4 +1,4 @@
-package tech.doit.app.school_manager.domain.entities
+package tech.doit.app.school_manager.domain.model.entities
 
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
