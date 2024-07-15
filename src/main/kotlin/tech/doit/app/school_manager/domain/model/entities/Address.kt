@@ -14,6 +14,9 @@ data class Address(
     val street: String,
 
     @Column(nullable = false)
+    val zipcode: String,
+
+    @Column(nullable = false)
     val number: String,
 
     val complement: String? = null,
