@@ -17,6 +17,12 @@ data class User(
     @Column(nullable = false, unique = true)
     val cpf: String,
 
+    @Column(nullable = false, unique = true)
+    val email: String,
+
+    @Column(nullable = false)
+    val password: String,
+
     @Column(nullable = false, updatable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),
 
