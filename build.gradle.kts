@@ -35,6 +35,13 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+	// Validation
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("javax.validation:validation-api")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+
+
 	// Doc
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 
