@@ -1,6 +1,7 @@
 package tech.doit.app.school_manager.domain.model.entities
 
 import jakarta.persistence.*
+import tech.doit.app.school_manager.domain.model.dto.AddressDTO
 import java.util.UUID
 
 @Entity
@@ -36,4 +37,16 @@ data class Address(
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
-)
+) {
+    constructor(addressDTO: AddressDTO, user: User) : this(
+        street = addressDTO.street,
+        zipCode = addressDTO.zipCode,
+        number = addressDTO.number,
+        complement = addressDTO.complement,
+        neighborhood = addressDTO.neighborhood,
+        city = addressDTO.city,
+        state = addressDTO.state,
+        country = addressDTO.country,
+        user = user
+    )
+}

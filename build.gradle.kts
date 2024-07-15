@@ -39,6 +39,8 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 
 	//TESTES
+	testImplementation("org.mockito:mockito-core")
+	testImplementation("org.mockito:mockito-junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("io.rest-assured:rest-assured:5.3.0")
 	// https://mvnrepository.com/artifact/org.testcontainers/postgresql
