@@ -24,7 +24,7 @@ data class Contact(
     val value: String,
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "contact_type", nullable = false)
     val contactType: ContactType,
 
     @ManyToOne

@@ -20,7 +20,7 @@ data class UserProfile(
     val id: UUID? = null,
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "profile_type", nullable = false)
     val profileType: ProfileType,
 
     @Column(nullable = false)
