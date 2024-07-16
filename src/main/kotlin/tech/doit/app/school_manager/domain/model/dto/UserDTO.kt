@@ -5,6 +5,9 @@ import tech.doit.app.school_manager.domain.model.entities.User
 import java.time.LocalDateTime
 
 data class UserDTO(
+
+    @JsonProperty("id")
+    val id: String?,
     @JsonProperty("name")
     val name: String?,
     @JsonProperty("email")
@@ -12,14 +15,24 @@ data class UserDTO(
     @JsonProperty("cpf")
     val cpf: String?,
     @JsonProperty("contact")
-    val contact: ContactDTO?,
+    val contact: List<ContactDTO>?,
     @JsonProperty("address")
-    val address: AddressDTO?,
+    val address: List<AddressDTO>?,
     @JsonProperty("createdAt")
     val createdAt: LocalDateTime?,
     @JsonProperty("updatedAt")
     val updatedAt: LocalDateTime?,
 ) {
-    constructor() : this(null, null, null, null, null, null, null)
-    constructor(saveUser: User) : this()
+    constructor(user: User) : this(
+        id = user.id.toString(),
+        name = user.name,
+        email = user.email,
+        cpf = user.cpf,
+        contact = user.contacts.map { ContactDTO(it.contactType, it.value) },
+        address = user.addresses.map {
+            AddressDTO(it.street, it.number, it.zipCode, it.complement, it.neighborhood, it.city, it.state, it.country)
+        },
+        createdAt = user.createdAt,
+        updatedAt = user.updatedAt
+    )
 }

@@ -12,11 +12,9 @@ class CreateUserFacade(
     private val userService: IUserService
 ) {
 
-    fun createAdminUserFromDTO(createUserDTO: CreateUserDTO): UserDTO {
-        val user = createAdminUser(createUserDTO)
-        userService.createUser(user)
-        return UserDTO()
-    }
+    fun createAdminUserFromDTO(createUserDTO: CreateUserDTO): UserDTO =
+        userService.createUser(createAdminUser(createUserDTO))
+
 
     private fun createAdminUser(createUserDTO: CreateUserDTO): User {
         return User(createUserDTO, "@123", ProfileType.ADMIN)
