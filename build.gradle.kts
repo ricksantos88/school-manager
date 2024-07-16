@@ -37,7 +37,7 @@ dependencies {
 
 	// Validation
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("javax.validation:validation-api")
+//	implementation("javax.validation:validation-api")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 
