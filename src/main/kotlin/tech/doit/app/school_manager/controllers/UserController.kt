@@ -20,7 +20,6 @@ class UserController(
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun createAuthor(@RequestBody @Valid createUserDTO: CreateUserDTO): UserDTO =
-        createUserFacade.createAdminUserFromDTO(createUserDTO)
-
+        createUserFacade.createUser(createUserDTO)
 
 }
