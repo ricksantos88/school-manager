@@ -1,8 +1,11 @@
 package tech.doit.app.school_manager.domain.database.entities
 
 import jakarta.persistence.*
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import tech.doit.app.school_manager.domain.model.enums.ProfileType
 import tech.doit.app.school_manager.domain.model.dto.CreateUserDTO
+import tech.doit.app.school_manager.domain.model.security.UserProfileAuthority
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -30,7 +33,7 @@ data class User(
 
     @Column(nullable = false)
     var updatedAt: LocalDateTime = LocalDateTime.now()
-) {
+): UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
     val profiles: List<UserProfile> = mutableListOf()
@@ -56,4 +59,18 @@ data class User(
         contacts.plus(Contact(value = dto.contact.value, contactType = dto.contact.contactType, user = this))
         addresses.plus(Address(dto.address, this))
     }
+
+    override fun getAuthorities(): List<UserProfileAuthority> = profiles.map(::UserProfileAuthority)
+
+    override fun getPassword(): String = this.password
+
+    override fun getUsername(): String = this.cpf
+
+    override fun isAccountNonExpired(): Boolean = true
+
+    override fun isAccountNonLocked(): Boolean = true
+
+    override fun isCredentialsNonExpired(): Boolean = true
+
+    override fun isEnabled(): Boolean = true
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import tech.doit.app.school_manager.domain.model.enums.ProfileType
+import java.io.Serializable
 import java.util.UUID
 
 @Entity
@@ -29,4 +30,4 @@ data class UserProfile(
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
-)
+): Serializable

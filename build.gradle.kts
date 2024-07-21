@@ -40,6 +40,8 @@ dependencies {
 //	implementation("javax.validation:validation-api")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
+	//Security
+	implementation("org.springframework.boot:spring-boot-starter-security")
 
 
 	// Doc
