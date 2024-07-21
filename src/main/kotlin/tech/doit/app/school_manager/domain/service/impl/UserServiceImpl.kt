@@ -2,8 +2,8 @@ package tech.doit.app.school_manager.domain.service.impl
 
 import org.springframework.stereotype.Service
 import tech.doit.app.school_manager.domain.model.dto.UserDTO
-import tech.doit.app.school_manager.domain.model.entities.User
-import tech.doit.app.school_manager.domain.repositories.UserRepository
+import tech.doit.app.school_manager.domain.database.entities.User
+import tech.doit.app.school_manager.domain.database.repositories.UserRepository
 import tech.doit.app.school_manager.domain.service.IUserService
 import java.util.*
 

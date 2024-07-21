@@ -1,10 +1,10 @@
 package tech.doit.app.school_manager.domain.facades
 
 import org.springframework.stereotype.Service
-import tech.doit.app.school_manager.domain.enums.ProfileType
+import tech.doit.app.school_manager.domain.model.enums.ProfileType
 import tech.doit.app.school_manager.domain.model.dto.CreateUserDTO
 import tech.doit.app.school_manager.domain.model.dto.UserDTO
-import tech.doit.app.school_manager.domain.model.entities.User
+import tech.doit.app.school_manager.domain.database.entities.User
 import tech.doit.app.school_manager.domain.service.IUserService
 
 @Service

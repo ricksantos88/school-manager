@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.server.ResponseStatusException
-import tech.doit.app.school_manager.exceptions.ApiErrors
+import tech.doit.app.school_manager.domain.exceptions.ApiErrors
 
 @RestControllerAdvice
 class RestControllerAdvice {

@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import tech.doit.app.school_manager.exceptions.ApiErrors
-import tech.doit.app.school_manager.exceptions.ServiceException
+import tech.doit.app.school_manager.domain.exceptions.ApiErrors
+import tech.doit.app.school_manager.domain.exceptions.ServiceException
 
 @RestControllerAdvice
 class BusinessAdvice {

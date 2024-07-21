@@ -1,7 +1,7 @@
 package tech.doit.app.school_manager.domain.model.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import tech.doit.app.school_manager.domain.model.entities.User
+import tech.doit.app.school_manager.domain.database.entities.User
 import java.time.LocalDateTime
 
 data class UserDTO(

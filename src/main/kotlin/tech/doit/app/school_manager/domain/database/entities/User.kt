@@ -1,7 +1,7 @@
-package tech.doit.app.school_manager.domain.model.entities
+package tech.doit.app.school_manager.domain.database.entities
 
 import jakarta.persistence.*
-import tech.doit.app.school_manager.domain.enums.ProfileType
+import tech.doit.app.school_manager.domain.model.enums.ProfileType
 import tech.doit.app.school_manager.domain.model.dto.CreateUserDTO
 import java.time.LocalDateTime
 import java.util.UUID

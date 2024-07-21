@@ -1,4 +1,4 @@
-package tech.doit.app.school_manager.domain.model.entities
+package tech.doit.app.school_manager.domain.database.entities
 
 import jakarta.persistence.*
 import tech.doit.app.school_manager.domain.model.dto.AddressDTO

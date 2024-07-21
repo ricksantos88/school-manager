@@ -1,4 +1,4 @@
-package tech.doit.app.school_manager.exceptions.enums
+package tech.doit.app.school_manager.domain.exceptions.enums
 
 import org.springframework.http.HttpStatus
 
