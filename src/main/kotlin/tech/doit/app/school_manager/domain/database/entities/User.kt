@@ -1,6 +1,7 @@
 package tech.doit.app.school_manager.domain.database.entities
 
 import jakarta.persistence.*
+import jakarta.persistence.FetchType.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import tech.doit.app.school_manager.domain.model.enums.ProfileType
@@ -26,7 +27,7 @@ data class User(
     val email: String,
 
     @Column(nullable = false)
-    val password: String,
+    private val password: String,
 
     @Column(nullable = false, updatable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),
@@ -35,14 +36,14 @@ data class User(
     var updatedAt: LocalDateTime = LocalDateTime.now()
 ): UserDetails {
 
-    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val profiles: List<UserProfile> = mutableListOf()
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = EAGER)
+    val profiles: MutableList<UserProfile> = mutableListOf()
 
-    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val contacts: List<Contact> = mutableListOf()
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = EAGER)
+    val contacts: MutableList<Contact> = mutableListOf()
 
-    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val addresses: List<Address> = mutableListOf()
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = EAGER)
+    val addresses: MutableList<Address> = mutableListOf()
 
     @PreUpdate
     fun preUpdate() {
@@ -55,9 +56,9 @@ data class User(
         email = dto.email,
         password = encryptedPassword
     ) {
-        profiles.plus(UserProfile(profileType = profileType, active = true, user = this))
-        contacts.plus(Contact(value = dto.contact.value, contactType = dto.contact.contactType, user = this))
-        addresses.plus(Address(dto.address, this))
+        profiles.add(UserProfile(profileType = profileType, active = true, user = this))
+        contacts.add(Contact(value = dto.contact.value, contactType = dto.contact.contactType, user = this))
+        addresses.add(Address(dto.address, this))
     }
 
     override fun getAuthorities(): List<UserProfileAuthority> = profiles.map(::UserProfileAuthority)

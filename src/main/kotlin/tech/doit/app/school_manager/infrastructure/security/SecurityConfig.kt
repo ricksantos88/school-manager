@@ -19,6 +19,7 @@ import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.context.NullSecurityContextRepository
+import tech.doit.app.school_manager.domain.model.enums.ProfileType
 import tech.doit.app.school_manager.domain.service.impl.UserDetailsServiceImpl
 
 @Configuration
@@ -33,8 +34,14 @@ class SecurityConfig {
         httpSecurity.authorizeHttpRequests{ requests ->
             requests
                 .requestMatchers(*PERMIT_URI).permitAll()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/auth").permitAll()
                 .requestMatchers(HttpMethod.POST,"/register").permitAll()
+
+                .requestMatchers(HttpMethod.GET, "/roles/get-adm").hasAnyRole(ProfileType.ADMIN.getDescription())
+                .requestMatchers(HttpMethod.POST, "/roles/post-adm").hasAnyRole(ProfileType.ADMIN.getDescription())
+                .requestMatchers(HttpMethod.GET, "/roles/get-school-principal").hasAnyRole(ProfileType.SCHOOL_PRINCIPAL.getDescription())
+                .requestMatchers(HttpMethod.POST, "/roles/get-school-principal").hasAnyRole(ProfileType.SCHOOL_PRINCIPAL.getDescription())
+
                 .anyRequest().authenticated()
         }
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)

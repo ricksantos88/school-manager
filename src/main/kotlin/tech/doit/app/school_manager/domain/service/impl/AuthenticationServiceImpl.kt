@@ -11,22 +11,24 @@ import tech.doit.app.school_manager.domain.exceptions.ServiceException
 import tech.doit.app.school_manager.domain.exceptions.enums.ServiceErrorEnum
 import tech.doit.app.school_manager.domain.model.dto.AuthenticationDTO
 import tech.doit.app.school_manager.domain.model.dto.CreateUserDTO
+import tech.doit.app.school_manager.domain.service.IAuthenticationService
 import tech.doit.app.school_manager.infrastructure.security.JwtService
 
 @Service
-class AuthenticationService(
+class AuthenticationServiceImpl(
     private val passwordEncoder: PasswordEncoder,
     private val repository: UserRepository,
     private val jwtService: JwtService,
     private val authenticationManager: AuthenticationManager
-) {
-    fun register(request: CreateUserDTO): String {
+): IAuthenticationService {
+    override fun register(request: CreateUserDTO): String {
         val secret = passwordEncoder.encode(request.password)
         val user = User(request, secret, request.userProfile)
-        return repository.save(user).let(jwtService::generateToken)
+//        return repository.save(user).let(jwtService::generateToken)
+        return repository.save(user).id.toString()
     }
 
-    fun authenticate(request: AuthenticationDTO): String {
+    override fun authenticate(request: AuthenticationDTO): String {
         requireNotNull(request.username) { "É necessário informar um username" }
         checkAuthentication(request)
         return repository.findByCpf(request.username).orElseThrow{ ServiceException(ServiceErrorEnum.USER_NOT_FOUND) }
@@ -35,7 +37,7 @@ class AuthenticationService(
                     "roles" to user.authorities.joinToString(" ") { it.authority }
                 ), user)
             }
-            ?: throw UsernameNotFoundException("O usuário informado não foi encontrado")
+            ?: throw ServiceException(ServiceErrorEnum.THE_USER_NOT_AUTHENTICATED)
     }
 
     private fun checkAuthentication(request: AuthenticationDTO) {

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import tech.doit.app.school_manager.domain.model.dto.AuthenticationDTO
 import tech.doit.app.school_manager.domain.model.dto.CreateUserDTO
-import tech.doit.app.school_manager.domain.service.AuthenticationService
+import tech.doit.app.school_manager.domain.service.IAuthenticationService
 
 @RestController
 class AuthenticationController(
-    private val authenticationService: AuthenticationService
+    private val authenticationService: IAuthenticationService
 ) {
 
     @PostMapping("/register")

@@ -14,7 +14,7 @@ data class Address(
     @Column(nullable = false)
     val street: String,
 
-    @Column(name = "zip_code",nullable = false)
+    @Column(name = "zipcode",nullable = false)
     val zipCode: String,
 
     @Column(nullable = false)

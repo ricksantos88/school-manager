@@ -4,11 +4,15 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
-import org.springframework.context.annotation.Configuration
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Component
 import java.util.*
 
-@Configuration
-class JwtUtil(private val secret: String) {
+@Component
+class JwtUtil {
+
+    @Value("\${jwt.secret}")
+    private lateinit var secret: String
 
     companion object {
         const val TOKEN_PREFIX = "Bearer "

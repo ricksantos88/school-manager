@@ -36,3 +36,5 @@ spring:
         jdbc:
           batch_size: 5000
       generate-ddl: false
+jwt:
+  secret: 47584d54313367676f4c5954396d5159784e3738785845457776734649393452

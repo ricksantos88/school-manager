@@ -17,6 +17,8 @@ class JwtAuthenticationFilter(
     private val jwtService: JwtService,
     private val userDetailService: UserDetailsServiceImpl
 ): OncePerRequestFilter() {
+
+
     override fun doFilterInternal(
         @NonNull request: HttpServletRequest,
         @NonNull response: HttpServletResponse,
@@ -42,9 +44,9 @@ class JwtAuthenticationFilter(
                 ).also {
                     it.details = WebAuthenticationDetailsSource().buildDetails(request)
                 }
-                    .also(
-                        SecurityContextHolder.getContext()::setAuthentication
-                    )
+                .also(
+                    SecurityContextHolder.getContext()::setAuthentication
+                )
             }
         }
 

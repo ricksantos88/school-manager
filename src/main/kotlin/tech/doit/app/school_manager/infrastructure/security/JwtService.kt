@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm.HS256
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import tech.doit.app.school_manager.domain.database.entities.User
 import java.security.Key
@@ -14,9 +15,10 @@ import java.util.*
 
 @Service
 class JwtService {
-    companion object {
-        private const val SECRET_KEY = "47584d54313367676f4c5954396d5159784e3738785845457776734649393452"
-    }
+
+    @Value("\${jwt.secret}")
+    private lateinit var secret: String
+
     fun extractUsername(token: String): String =
         extractClaim(token, Claims::getSubject)
 
@@ -54,6 +56,6 @@ class JwtService {
 
     private fun getSignInKey(): Key =
         Decoders.BASE64
-            .decode(SECRET_KEY)
+            .decode(secret)
             .let(Keys::hmacShaKeyFor)
 }
