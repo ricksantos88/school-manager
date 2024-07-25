@@ -14,5 +14,5 @@ services:
       ## For Windows users: it is highly recommended run docker on WSL2 otherwise
       ## YOU MIGHT HAVE PROBLEMS WITH THE BIND MOUNT
       ## TODO ADD Linux volumes dir
-      - /home/volumes/projects/school-manager:/var/lib/postgresql/data
+      - ./school-manager:/var/lib/postgresql/data
       ##- C:\Projetos\DO-IT\volumes\asom\postgres:/var/lib/postgresql/data

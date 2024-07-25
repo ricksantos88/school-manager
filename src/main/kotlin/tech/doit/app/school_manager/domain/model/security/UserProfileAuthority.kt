@@ -7,10 +7,8 @@ import tech.doit.app.school_manager.domain.model.enums.ProfileType
 data class UserProfileAuthority(
     private val userProfile: UserProfile
 ): GrantedAuthority {
-    override fun getAuthority(): String = "${PREFIX}_${userProfile.profileType}"
+    override fun getAuthority(): String = userProfile.profileType.getDescription()
     companion object {
-        private const val PREFIX = "ROLE"
-        fun fromRole(profileType: ProfileType) = "${PREFIX}_${profileType.name}"
+        fun fromRole(profileType: ProfileType) = profileType.getDescription()
     }
-
 }
