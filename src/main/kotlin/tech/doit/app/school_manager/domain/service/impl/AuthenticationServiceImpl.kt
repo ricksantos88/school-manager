@@ -2,7 +2,6 @@ package tech.doit.app.school_manager.domain.service.impl
 
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import tech.doit.app.school_manager.domain.database.entities.User
@@ -24,7 +23,6 @@ class AuthenticationServiceImpl(
     override fun register(request: CreateUserDTO): String {
         val secret = passwordEncoder.encode(request.password)
         val user = User(request, secret, request.userProfile)
-//        return repository.save(user).let(jwtService::generateToken)
         return repository.save(user).id.toString()
     }
 
@@ -33,9 +31,7 @@ class AuthenticationServiceImpl(
         checkAuthentication(request)
         return repository.findByCpf(request.username).orElseThrow{ ServiceException(ServiceErrorEnum.USER_NOT_FOUND) }
             ?.let{ user ->
-                jwtService.generateToken(mapOf(
-                    "roles" to user.authorities.joinToString(" ") { it.authority }
-                ), user)
+                jwtService.generateToken(user)
             }
             ?: throw ServiceException(ServiceErrorEnum.THE_USER_NOT_AUTHENTICATED)
     }
